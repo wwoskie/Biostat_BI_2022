@@ -43,7 +43,7 @@ def check_dge_with_ci(first_table, second_table):
     return ci_test_results
 
 def check_dge_with_ztest(first_table, second_table):
-    z_test_p_values = [ztest(first_table[gene], second_table[gene])[1] for gene in first_table.select_dtypes('number').columns]
+    z_test_p_values = [round(ztest(first_table[gene], second_table[gene])[1], 4) for gene in first_table.select_dtypes('number').columns]
     z_test_results = np.array(z_test_p_values) < 0.05
     return z_test_p_values, z_test_results
 
